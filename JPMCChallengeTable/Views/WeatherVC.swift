@@ -7,9 +7,25 @@
 
 import UIKit
 
-class WeatherVC: UITableViewController {
+
+
+class WeatherVC: UITableViewController, WeatherManagerDelegate {
     
-    var weatherModel = [Weather]()
+    var weatherArray = [Weather.Dataseries]()
+    
+    func didUpdateWeather(_ weatherManager: WeatherManager, weather: [Weather.Dataseries]) {
+        DispatchQueue.main.async {
+            self.weatherArray = weather
+            self.tableView.reloadData()
+        }
+    }
+    
+    func didFailWithError(error: Error) {
+        print(LocalizedError.self)
+    }
+    
+    
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,10 +40,10 @@ class WeatherVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "weatherCell", for: indexPath) as! WeatherCell
-        cell.timepointLabel.text = "Time Point: \(weatherModel[indexPath.row].dataseries.first)"
-        cell.cloudCover.text = "Cloud Cover: \(weatherModel[indexPath.row].dataseries[indexPath.row].cloudCover)"
-        cell.transparencyLabel.text = "Transparency: \(weatherModel[indexPath.row].dataseries[indexPath.row].transparency)"
-        if weatherModel[indexPath.row].dataseries[indexPath.row].wind10m[indexPath.row].direction == "E" {
+        cell.timepointLabel.text = "Time Point: \(weatherArray[0].timepoint)"
+        cell.cloudCover.text = "Cloud Cover: \(weatherArray[0].cloudCover)"
+        cell.transparencyLabel.text = "Transparency: \(weatherArray[0].transparency)"
+        if weatherArray[indexPath.row].wind10m.direction == "E" {
             cell.windImage.image = UIImage(systemName: "wind")
         } else {
             cell.windImage.image = nil
@@ -37,38 +53,7 @@ class WeatherVC: UITableViewController {
         return cell
     }
     
-    func fetchData() {
-        guard let weatherURL = URL(string: "https://www.7timer.info/bin/astro.php?lon=113.2&lat=23.1&ac=0&unit=metric&output=json&tzshift=0") else {
-            return
-        }
-        
-        URLSession.shared.dataTask(with: weatherURL) { data, response, error in
-            guard let data = data, error == nil else {
-                return
-            }
-            
-            do {
-                let weatherInfo = self.parseData(data: data)
-                if let weatherInfo = weatherInfo {
-                    self.weatherModel = weatherInfo
-                }
-            } catch {
-                fatalError("Error fetching data")
-            }
-        }
-    }
-    
-    func parseData(data: Data) -> [Weather]? {
-        var toBeReturned: [Weather]?
-        let decoder = JSONDecoder()
-        do {
-            toBeReturned = try decoder.decode([Weather].self, from: data)
-        } catch {
-            fatalError("Unable to parse data")
-        }
 
-        return toBeReturned
-    }
 
 }
 

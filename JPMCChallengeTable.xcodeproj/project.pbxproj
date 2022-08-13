@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C4B3E4C328A6CD5900709362 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B3E4C228A6CD5900709362 /* WeatherManager.swift */; };
 		C4EC500328A54AD800A616D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EC500228A54AD800A616D5 /* AppDelegate.swift */; };
 		C4EC500528A54AD800A616D5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EC500428A54AD800A616D5 /* SceneDelegate.swift */; };
 		C4EC500728A54AD800A616D5 /* WeatherVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EC500628A54AD800A616D5 /* WeatherVC.swift */; };
@@ -17,7 +18,6 @@
 		C4EC501D28A54ADB00A616D5 /* JPMCChallengeTableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EC501C28A54ADB00A616D5 /* JPMCChallengeTableTests.swift */; };
 		C4EC502728A54ADB00A616D5 /* JPMCChallengeTableUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EC502628A54ADB00A616D5 /* JPMCChallengeTableUITests.swift */; };
 		C4EC502928A54ADB00A616D5 /* JPMCChallengeTableUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EC502828A54ADB00A616D5 /* JPMCChallengeTableUITestsLaunchTests.swift */; };
-		C4EC503928A54CE600A616D5 /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EC503828A54CE600A616D5 /* Webservice.swift */; };
 		C4EC503B28A54CF600A616D5 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EC503A28A54CF600A616D5 /* Weather.swift */; };
 		C4EC504228A54ECD00A616D5 /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EC504028A54ECD00A616D5 /* WeatherCell.swift */; };
 		C4EC504328A54ECD00A616D5 /* WeatherCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4EC504128A54ECD00A616D5 /* WeatherCell.xib */; };
@@ -41,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C4B3E4C228A6CD5900709362 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 		C4EC4FFF28A54AD800A616D5 /* JPMCChallengeTable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JPMCChallengeTable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4EC500228A54AD800A616D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4EC500428A54AD800A616D5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,7 +56,6 @@
 		C4EC502228A54ADB00A616D5 /* JPMCChallengeTableUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JPMCChallengeTableUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4EC502628A54ADB00A616D5 /* JPMCChallengeTableUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JPMCChallengeTableUITests.swift; sourceTree = "<group>"; };
 		C4EC502828A54ADB00A616D5 /* JPMCChallengeTableUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JPMCChallengeTableUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		C4EC503828A54CE600A616D5 /* Webservice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Webservice.swift; sourceTree = "<group>"; };
 		C4EC503A28A54CF600A616D5 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		C4EC504028A54ECD00A616D5 /* WeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
 		C4EC504128A54ECD00A616D5 /* WeatherCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherCell.xib; sourceTree = "<group>"; };
@@ -109,7 +109,6 @@
 		C4EC500128A54AD800A616D5 /* JPMCChallengeTable */ = {
 			isa = PBXGroup;
 			children = (
-				C4EC503728A54C8200A616D5 /* Services */,
 				C4EC503628A54C7400A616D5 /* Models */,
 				C4EC500228A54AD800A616D5 /* AppDelegate.swift */,
 				C4EC500428A54AD800A616D5 /* SceneDelegate.swift */,
@@ -154,16 +153,9 @@
 			isa = PBXGroup;
 			children = (
 				C4EC503A28A54CF600A616D5 /* Weather.swift */,
+				C4B3E4C228A6CD5900709362 /* WeatherManager.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		C4EC503728A54C8200A616D5 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				C4EC503828A54CE600A616D5 /* Webservice.swift */,
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -301,7 +293,7 @@
 				C4EC500D28A54AD800A616D5 /* JPMCChallengeTable.xcdatamodeld in Sources */,
 				C4EC500728A54AD800A616D5 /* WeatherVC.swift in Sources */,
 				C4EC500328A54AD800A616D5 /* AppDelegate.swift in Sources */,
-				C4EC503928A54CE600A616D5 /* Webservice.swift in Sources */,
+				C4B3E4C328A6CD5900709362 /* WeatherManager.swift in Sources */,
 				C4EC503B28A54CF600A616D5 /* Weather.swift in Sources */,
 				C4EC500528A54AD800A616D5 /* SceneDelegate.swift in Sources */,
 				C4EC504228A54ECD00A616D5 /* WeatherCell.swift in Sources */,
