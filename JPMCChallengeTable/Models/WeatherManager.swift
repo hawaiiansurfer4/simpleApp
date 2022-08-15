@@ -8,13 +8,13 @@
 import Foundation
 
 protocol WeatherManagerDelegate {
-    func didUpdateWeather(_ weatherManager: WeatherManager, weather: [Weather.Dataseries])
+    func didUpdateWeather(_ weatherManager: WeatherManager, weather: WeatherModel)
     func didFailWithError(error: Error)
 }
 
 struct WeatherManager {
     
-    var weatherModel = [Weather]()
+//    var weatherModel = [Weather]()
     var delegate: WeatherManagerDelegate?
 
     
@@ -39,11 +39,11 @@ struct WeatherManager {
         }.resume()
     }
     
-    func parseData(data: Data) -> [Weather.Dataseries]? {
-        var toBeReturned: [Weather.Dataseries]?
-        let decoder = JSONDecoder()
+    func parseData(data: Data) -> WeatherModel? {
+        var toBeReturned: WeatherModel?
+//        let decoder = JSONDecoder()
         do {
-            toBeReturned = try decoder.decode([Weather.Dataseries].self, from: data)
+            toBeReturned = try JSONDecoder().decode(WeatherModel.self, from: data)
         } catch {
             fatalError("Unable to parse data")
         }

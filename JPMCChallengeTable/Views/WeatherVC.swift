@@ -11,13 +11,16 @@ import UIKit
 
 class WeatherVC: UITableViewController, WeatherManagerDelegate {
     
-    var weatherArray = [Weather.Dataseries]()
+    var weatherArray: WeatherModel?
     
-    func didUpdateWeather(_ weatherManager: WeatherManager, weather: [Weather.Dataseries]) {
-        DispatchQueue.main.async {
-            self.weatherArray = weather
-            self.tableView.reloadData()
-        }
+    func didUpdateWeather(_ weatherManager: WeatherManager, weather: WeatherModel) {
+//        DispatchQueue.main.async {
+//            for i in weather {
+//                self.weatherArray.append(i)
+//            }
+////            self.weatherArray = weather
+//            self.tableView.reloadData()
+//        }
     }
     
     func didFailWithError(error: Error) {
@@ -30,6 +33,7 @@ class WeatherVC: UITableViewController, WeatherManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "WeatherCell", bundle: nil), forCellReuseIdentifier: "weatherCell")
+        WeatherManager().fetchData()
     }
     
     
@@ -40,15 +44,19 @@ class WeatherVC: UITableViewController, WeatherManagerDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "weatherCell", for: indexPath) as! WeatherCell
-        cell.timepointLabel.text = "Time Point: \(weatherArray[0].timepoint)"
-        cell.cloudCover.text = "Cloud Cover: \(weatherArray[0].cloudCover)"
-        cell.transparencyLabel.text = "Transparency: \(weatherArray[0].transparency)"
-        if weatherArray[indexPath.row].wind10m.direction == "E" {
-            cell.windImage.image = UIImage(systemName: "wind")
-        } else {
-            cell.windImage.image = nil
-        }
-        
+        cell.timepointLabel.text = "Time Point: Testing"
+        cell.cloudCover.text = "Cloud Cover: Testing"
+        cell.windImage.image = UIImage(systemName: "wind")
+        cell.transparencyLabel.text = "Transparency: Testing"
+//        cell.timepointLabel.text = "Time Point: \(weatherArray[0].timepoint)"
+//        cell.cloudCover.text = "Cloud Cover: \(weatherArray[0].cloudCover)"
+//        cell.transparencyLabel.text = "Transparency: \(weatherArray[0].transparency)"
+//        if weatherArray[indexPath.row].wind10m.direction == "E" {
+//            cell.windImage.image = UIImage(systemName: "wind")
+//        } else {
+//            cell.windImage.image = nil
+//        }
+//
         
         return cell
     }
